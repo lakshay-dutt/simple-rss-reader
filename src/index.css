@@ -1,3 +1,6 @@
 .png {
   background-image: url("./assets/images/pngegg.png");
 }
+body {
+  background-color: whitesmoke;
+}

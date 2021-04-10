@@ -1,7 +1,8 @@
 import React, { Fragment } from "react";
-import Header from "../components/Header";
+import Header from "../components/Header/index";
 
 const withLayout = (WrappedComponent) => {
+  debugger
   return (
     <Fragment>
       <Header />

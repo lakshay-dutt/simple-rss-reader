@@ -1,16 +1,22 @@
 import React, { Fragment } from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from "react-router-dom";
 import routes from "./routes";
+import DetailPage from "./views/DetailPage";
+import Home from "./views/Home";
 const App = () => {
   return (
     <Fragment>
       <Router>
         <Switch>
-          {routes.map((route, i) => (
-            <Fragment key={route.path + i}>
-              <Route exact path={route.path} component={route.Component} />
-            </Fragment>
-          ))}
+          <Route exact path="/" component={Home} />
+          <Route path="/detail-page" component={DetailPage} />
+          <Route path="/" component={Home} />
+          <Redirect exact from="/" to="/home" />
         </Switch>
       </Router>
     </Fragment>

@@ -1,0 +1,19 @@
+.text-center > figure > img:first-of-type {
+  margin: 0 0 3vw;
+  width: 100%;
+  height: 500px;
+  object-fit: cover;
+}
+h4 {
+  margin: 0.8em 0 0.4em;
+  font-size: 2.2rem;
+  font-weight: 700;
+}
+p {
+  line-height: 30px;
+  color: #3c484e;
+  text-align: left;
+  font-size: 18px;
+  letter-spacing: 2px;
+  padding: 0 30px;
+}
