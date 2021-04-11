@@ -1,5 +1,5 @@
 import React, { Fragment, useState } from "react";
-import { Fb, Whatsapp, Email, LinkedIn, Twitter } from "../../assets/svg";
+import { Fb, Whatsapp, LinkedIn, Twitter } from "../../assets/svg";
 import { get } from "../../tools/methods";
 import { Link } from "react-router-dom";
 import { toggleBookmark } from "../../redux/helpers";
@@ -14,7 +14,10 @@ const NewsCard = ({ data }) => {
           data.link
         }&picture=${data.urlToImage}`;
         break;
-      case "email":
+      case "twitter":
+        link = `http://twitter.com/share?text=${data.title}&url=${encodeURIComponent(data.link)}`;
+        break;
+      case "linkedin":
         link = `https://www.linkedin.com/shareArticle?url=${encodeURIComponent(data.link)}&title=${data.title}&summary=${data.description}`;
         break;
       case "whatsapp":
@@ -43,11 +46,6 @@ const NewsCard = ({ data }) => {
       Component: Twitter,
       className: "fill-current text-blue-600",
       handler: () => handleSocialClick("twitter"),
-    },
-    {
-      Component: Email,
-      className: "fill-current text-red-600",
-      handler: () => handleSocialClick("email"),
     },
     {
       Component: LinkedIn,

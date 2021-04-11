@@ -7,14 +7,12 @@ import Settings from "./views/Settings";
 import DetailPage from "./views/DetailPage";
 import { connect } from "react-redux";
 import { fetchFeeds } from "./redux/helpers";
-import { store } from "./redux/store";
 const App = props => {
   useEffect(() => {
-    const temp = (store.getState().feed || {}).feeds;
-    if (props && props.feed.urls && Array.isArray(props.feed.urls) && Object.keys(temp).length < 1) {
+    if (props && props.feed.urls && Array.isArray(props.feed.urls)) {
       fetchFeeds(props.feed.urls);
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
     <Fragment>

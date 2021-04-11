@@ -2,7 +2,7 @@ import { BOOKMARK_FEED, UNBOOKMARK_FEED, FETCH_FEED, ADD_FEED_URL, REMOVE_FEED_U
 import initialState from "../store/state";
 
 function feedReducer(state = initialState, action) {
-  let feedId, selectedFeed;
+  let feedId, selectedFeed, feeds;
   switch (action.type) {
     case BOOKMARK_FEED:
       feedId = action.payload.feedId;
@@ -13,15 +13,18 @@ function feedReducer(state = initialState, action) {
       selectedFeed = state.feeds[feedId];
       return { ...state, feeds: { ...state.feeds, [feedId]: { ...selectedFeed, bookmarked: false } } };
     case FETCH_FEED:
-      return { ...state, feeds: action.payload.feeds };
+      const localFeeds = JSON.parse(localStorage.getItem("localRssFeeds") || "{}");
+      return { ...state, feeds: { ...action.payload.feeds, ...localFeeds } };
     case ADD_FEED_URL:
-      return state;
+      let feedUrl = action.payload.feedUrl;
+      return [...state.urls].indexOf(feedUrl) > -1 ? { ...state } : { ...state, urls: [...state.urls, action.payload.feedUrl] };
     case REMOVE_FEED_URL:
       return state;
     case ADD_LOCAL_FEED:
-      return state;
+      feeds = action.payload.feeds;
+      return { ...state, feeds: { ...state.feeds, ...feeds } };
     case REMOVE_LOCAL_FEED:
-      return state;
+      return initialState;
     default:
       return state;
   }

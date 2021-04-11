@@ -3,7 +3,7 @@ import Settings from "../views/Settings";
 import DetailPage from "../views/DetailPage";
 const routes = [
   {
-    path: "/home",
+    path: "/",
     Component: Home,
     header: {
       include: true,
@@ -22,10 +22,10 @@ const routes = [
     path: "/detail-page",
     Component: DetailPage,
     header: {
-      include: true,
+      include: false,
       label: "Detail Page",
     },
-  }
+  },
 ];
 
 export default routes;

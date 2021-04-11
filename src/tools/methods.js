@@ -16,6 +16,9 @@ export function removeElement(array, index) {
   return array;
 }
 
-export function parseXmlToJSON(xml = null) {
-  return xml ? parser.parse(xml) : {};
+export const parseXmlToJSON = async (xml = null) => {
+  if (xml){
+    return await parser.parse(xml)
+  }
+  return {};
 }
