@@ -1,3 +1,5 @@
+import parser from "fast-xml-parser";
+
 export function get(object, keys, defaultVal) {
   keys = Array.isArray(keys) ? keys : keys.split(".");
   object = object[keys[0]];
@@ -12,4 +14,8 @@ export function removeElement(array, index) {
     array.splice(index, 1);
   }
   return array;
+}
+
+export function parseXmlToJSON(xml = null){
+  return xml ? parser.parse(xml) : {};
 }

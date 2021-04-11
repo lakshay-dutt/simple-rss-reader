@@ -1,17 +1,28 @@
-import React, { Fragment } from "react";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Redirect,
-} from "react-router-dom";
+import React, { Fragment, useState, useEffect } from "react";
+import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
 
 import Home from "./views/Home";
 import Error from "./views/Error";
 import Settings from "./views/Settings";
 import DetailPage from "./views/DetailPage";
+import { connect } from "react-redux";
+import fetchFeedXml from "./api";
+const App = props => {
+  const [data, setData] = useState([]);
 
-const App = () => {
+  useEffect(() =>{
+
+    if (props && props.feed.urls && Array.isArray(props.feed.urls)){
+      [...props.feed.urls].forEach(async url => {
+        try{
+          const respoonse = await fetchFeedXml(url);
+        debugger
+        }catch(err){
+          debugger
+        }
+      })
+    }
+  }, []);
   return (
     <Fragment>
       <Router>
@@ -27,4 +38,9 @@ const App = () => {
   );
 };
 
-export default App;
+function mapStateToProps(state) {
+  const { feed = {} } = state;
+  return { feed };
+}
+
+export default connect(mapStateToProps, {})(App);

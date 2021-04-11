@@ -1,18 +1,17 @@
-import { createStore, applyMiddleware } from "redux";
-import { persistStore, persistReducer } from "redux-persist";
 import { composeWithDevTools } from "redux-devtools-extension";
+import { persistStore, persistReducer } from "redux-persist";
+import { createStore, applyMiddleware } from "redux";
 import storage from "redux-persist/lib/storage";
 import thunk from "redux-thunk";
 
 import rootReducer from "../reducers";
-
-const initialState = {};
+import initialState from "./state";
 
 const middleware = [thunk];
 const persistConfig = {
   key: "root",
   storage,
-  blacklist: ["modal"],
+  blacklist: ["feed"],
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
