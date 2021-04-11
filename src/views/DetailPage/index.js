@@ -21,7 +21,7 @@ const DetailPage = props => {
     if (id) {
       const temp = (props.feed || {}).feeds || {};
       const selectedFeed = temp[id];
-      if (selectedFeed["content:encoded"]) setData(selectedFeed);
+      if (selectedFeed && selectedFeed["content:encoded"]) setData(selectedFeed);
       else {
         setError("No Content");
       }
