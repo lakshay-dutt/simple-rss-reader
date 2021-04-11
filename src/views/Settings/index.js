@@ -15,7 +15,6 @@ const Settings = ({ feed, history }) => {
     reader.readAsText(data, "UTF-8");
     reader.onload = async function (evt) {
       let result = await parseXmlToJSON(evt.target.result);
-      debugger
       result = ((result || {} || {}).rss || {}).channel || {};
       [...result.item].forEach(item => {
         const temp = { [item.guid]: { ...item, image: result.image } };
