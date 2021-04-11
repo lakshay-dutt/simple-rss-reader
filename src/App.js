@@ -10,19 +10,21 @@ import fetchFeedXml from "./api";
 const App = props => {
   const [data, setData] = useState([]);
 
-  useEffect(() =>{
-
-    if (props && props.feed.urls && Array.isArray(props.feed.urls)){
+  useEffect(() => {
+    setData([]);
+    if (props && props.feed.urls && Array.isArray(props.feed.urls)) {
       [...props.feed.urls].forEach(async url => {
-        try{
+        try {
           const respoonse = await fetchFeedXml(url);
-        debugger
-        }catch(err){
-          debugger
+          console.log(respoonse, data);
+          debugger;
+        } catch (err) {
+          debugger;
         }
-      })
+      });
     }
-  }, []);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [props]);
   return (
     <Fragment>
       <Router>
