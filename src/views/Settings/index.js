@@ -14,9 +14,9 @@ const Settings = () => {
       const data = e.currentTarget.files[0];
       var reader = new FileReader();
         reader.readAsText(data, "UTF-8");
-        reader.onload = function (evt) {
-            const result = evt.target.result;
-        }
+        // reader.onload = function (evt) {
+        //     const result = evt.target.result;
+        // }
   }
 
   return (
