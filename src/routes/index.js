@@ -1,7 +1,6 @@
 import Home from "../views/Home";
+import Settings from "../views/Settings";
 import DetailPage from "../views/DetailPage";
-import Error from "../views/Error";
-
 const routes = [
   {
     path: "/home",
@@ -10,7 +9,14 @@ const routes = [
       include: true,
       label: "Home",
     },
-    exact: true
+  },
+  {
+    path: "/settings",
+    Component: Settings,
+    header: {
+      include: true,
+      label: "Settings",
+    },
   },
   {
     path: "/detail-page",
@@ -19,13 +25,7 @@ const routes = [
       include: true,
       label: "Detail Page",
     },
-    exact: false
-  },
-  {
-    path: "*",
-    Component: Error,
-    exact: false
-  },
+  }
 ];
 
 export default routes;

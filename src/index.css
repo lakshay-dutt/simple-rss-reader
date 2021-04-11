@@ -4,3 +4,21 @@
 body {
   background-color: whitesmoke;
 }
+
+.ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+  display: inline-block;
+}
+
+.search-icon {
+  height: 80%;
+  margin-left: 90%;
+}
+.upload-button {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+}

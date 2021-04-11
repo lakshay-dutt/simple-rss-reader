@@ -6,3 +6,10 @@ export function get(object, keys, defaultVal) {
   }
   return object === undefined ? defaultVal : object;
 }
+
+export function removeElement(array, index) {
+  if (index > -1) {
+    array.splice(index, 1);
+  }
+  return array;
+}

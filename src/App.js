@@ -6,17 +6,21 @@ import {
   Redirect,
 } from "react-router-dom";
 
-import DetailPage from "./views/DetailPage";
 import Home from "./views/Home";
+import Error from "./views/Error";
+import Settings from "./views/Settings";
+import DetailPage from "./views/DetailPage";
+
 const App = () => {
   return (
     <Fragment>
       <Router>
         <Switch>
           <Route exact path="/" component={Home} />
-          <Route path="/detail-page" component={DetailPage} />
-          <Route path="/" component={Home} />
-          <Redirect exact from="/" to="/home" />
+          <Route exact path="/error" component={Error} />
+          <Route exact path="/settings" component={Settings} />
+          <Route exact path="/detail-page" component={DetailPage} />
+          <Redirect to="/error" />
         </Switch>
       </Router>
     </Fragment>
