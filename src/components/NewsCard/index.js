@@ -1,16 +1,18 @@
 import React, { Fragment, useState } from "react";
 import { Fb, Whatsapp, Email, LinkedIn, Twitter } from "../../assets/svg";
+import { get } from "../../tools/methods";
+import { Link } from "react-router-dom";
+import { toggleBookmark } from "../../redux/helpers";
 const NewsCard = ({ data }) => {
-  const [bookmark, setBookmark] = useState(false);
-  const handleClick = link => () => {
-    window.open(link, "_blank");
-  };
+  const [bookmark, setBookmark] = useState(data.bookmarked || false);
 
   const handleSocialClick = socialProfile => {
     let link = "";
     switch (socialProfile) {
       case "fb":
-        link = `https://www.facebook.com/sharer.php?caption=${data.title}&description=${data.description}&u=${data.link}&picture=${data.urlToImage}`;
+        link = `https://www.facebook.com/sharer.php?caption=${encodeURIComponent(data.title)}&description=${encodeURIComponent(data.description)}&u=${
+          data.link
+        }&picture=${data.urlToImage}`;
         break;
       case "email":
         link = `https://www.linkedin.com/shareArticle?url=${encodeURIComponent(data.link)}&title=${data.title}&summary=${data.description}`;
@@ -53,13 +55,23 @@ const NewsCard = ({ data }) => {
       handler: () => handleSocialClick("linkedin"),
     },
   ];
+
+  const guid = data.guid;
+  const handleBookmarkClick = () => {
+    toggleBookmark(guid, !bookmark);
+    setBookmark(!bookmark);
+  };
   return (
     <Fragment>
       <div className="min-w-full min-h-full max-h-full max-w-sm rounded-lg overflow-hidden shadow-lg mx-auto my-8 news-card bg-white">
         <div
           className="bg-cover bg-center h-56 p-4"
           style={{
-            backgroundImage: `url(${data.urlToImage})`,
+            backgroundImage: `url(${get(
+              data,
+              "image.url",
+              "https://www.k-online.com/cache/pica/4/1/2/8/5/1/150081534242697/icon_rss_K_hintergrund_transparent_4-3.png"
+            )})`,
             backgroundSize: "contain",
             backgroundRepeat: "no-repeat",
           }}
@@ -69,17 +81,19 @@ const NewsCard = ({ data }) => {
               className={`h-6 w-6 ${bookmark ? "text-red-500" : "text-black"} fill-current cursor-pointer`}
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
-              onClick={() => setBookmark(!bookmark)}
+              onClick={handleBookmarkClick}
             >
               <path d="M12.76 3.76a6 6 0 0 1 8.48 8.48l-8.53 8.54a1 1 0 0 1-1.42 0l-8.53-8.54a6 6 0 0 1 8.48-8.48l.76.75.76-.75zm7.07 7.07a4 4 0 1 0-5.66-5.66l-1.46 1.47a1 1 0 0 1-1.42 0L9.83 5.17a4 4 0 1 0-5.66 5.66L12 18.66l7.83-7.83z"></path>
             </svg>
           </div>
         </div>
-        <div className="px-6 py-4 cursor-pointer" onClick={handleClick(data.link)}>
-          <div className="font-bold text-xl mb-2" title={data.title}>
-            <span className="ellipsis">{data.title}</span>
+        <Link to={`/detail-page/${btoa(guid)}`}>
+          <div className="px-6 py-4 cursor-pointer">
+            <div className="font-bold text-xl mb-2" title={data.title}>
+              <span className="ellipsis">{data.title}</span>
+            </div>
           </div>
-        </div>
+        </Link>
         {data.category && data.category.length > 0 && Array.isArray(data.category) && (
           <div className="px-6 py-4">
             {data.category.map((category, i) => (

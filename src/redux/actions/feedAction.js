@@ -8,8 +8,8 @@ export const unbookmarkFeedAction = feedId => dispatch => {
   dispatch({ type: UNBOOKMARK_FEED, payload: { feedId: feedId } });
 };
 
-export const fetchFeedAction = () => dispatch => {
-  dispatch({ type: FETCH_FEED, payload: {} });
+export const fetchFeedAction = feeds => dispatch => {
+  dispatch({ type: FETCH_FEED, payload: { feeds: { ...feeds } } });
 };
 
 export const addFeedUrlAction = feedUrl => dispatch => {
@@ -19,4 +19,3 @@ export const addFeedUrlAction = feedUrl => dispatch => {
 export const removeFeedUrlAction = feedUrl => dispatch => {
   dispatch({ type: REMOVE_FEED_URL, payload: { feedUrl: feedUrl } });
 };
-

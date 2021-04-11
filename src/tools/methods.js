@@ -16,6 +16,6 @@ export function removeElement(array, index) {
   return array;
 }
 
-export function parseXmlToJSON(xml = null){
+export function parseXmlToJSON(xml = null) {
   return xml ? parser.parse(xml) : {};
 }

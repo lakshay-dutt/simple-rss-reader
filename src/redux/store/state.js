@@ -1,6 +1,6 @@
 const initialState = {
-  feeds: [],
-  urls: ["https://medium.com/feed/the-economist", "https://medium.com/feed/backchannel", "https://medium.com/feed/matter"],
+  feeds: {},
+  urls: ["https://rss.art19.com/apology-line"],
 };
 
 export default initialState;

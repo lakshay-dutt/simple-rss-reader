@@ -11,13 +11,13 @@ const Settings = () => {
   };
 
   const onFileSelect = e => {
-      const data = e.currentTarget.files[0];
-      var reader = new FileReader();
-        reader.readAsText(data, "UTF-8");
-        // reader.onload = function (evt) {
-        //     const result = evt.target.result;
-        // }
-  }
+    const data = e.currentTarget.files[0];
+    var reader = new FileReader();
+    reader.readAsText(data, "UTF-8");
+    // reader.onload = function (evt) {
+    //     const result = evt.target.result;
+    // }
+  };
 
   return (
     <Fragment>
@@ -27,30 +27,30 @@ const Settings = () => {
         </div>
         <div className="container mx-auto px-32 mt-24">
           <div className="flex justify-between">
-            <div class="relative inline-block mr-12 xl:mr-0 w-1/2">
+            <div className="relative inline-block mr-12 xl:mr-0 w-1/2">
               <SettingsIcon className="absolute text-purple-700 fill-current search-icon" />
               <input
-                class="appearance-none rounded-full shadow-lg w-full py-4 px-6 pr-16 text-xl text-gray-700 focus:outline-none focus:shadow-outline"
+                className="appearance-none rounded-full shadow-lg w-full py-4 px-6 pr-16 text-xl text-gray-700 focus:outline-none focus:shadow-outline"
                 type="text"
                 placeholder="Add URL"
               />
             </div>
-            <label class="rounded-full bg-purple-700 text-white text-xl rounded-1xl h-20 w-56 shadow-lg" htmlFor="select-file">
-              <span class="upload-button py-6">
+            <label className="rounded-full bg-purple-700 text-white text-xl rounded-1xl h-20 w-56 shadow-lg" htmlFor="select-file">
+              <span className="upload-button py-6">
                 Upload File &nbsp;
                 <FileUploadIcon className="text-white fill-current" />
               </span>
             </label>
-            <input type="file" className="hidden" id="select-file" accept=".rss" onChange={onFileSelect}/>
+            <input type="file" className="hidden" id="select-file" accept=".rss" onChange={onFileSelect} />
           </div>
 
           {[...items].length > 0 && (
-            <div class="w-full mt-24">
-              <div class="block w-full">
+            <div className="w-full mt-24">
+              <div className="block w-full">
                 <h4>Registered Feed Sources (Click to delete source)</h4>
               </div>
               <div className="mb-8 w-full block">
-                <ul class="list-inside bg-rose-200 list-disc">
+                <ul className="list-inside bg-rose-200 list-disc">
                   {[...items].map(function (item, i) {
                     return (
                       <li className="text-lg text-indigo-900 cursor-pointer" key={i} title="Click to delete" onClick={() => handleDelete(i)}>
