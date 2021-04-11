@@ -14,6 +14,7 @@ const App = props => {
     if (props && props.feed.urls && Array.isArray(props.feed.urls) && Object.keys(temp).length < 1) {
       fetchFeeds(props.feed.urls);
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
     <Fragment>
