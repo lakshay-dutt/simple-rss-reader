@@ -1,6 +1,9 @@
-export const FETCH_FEED = "FETCH_FEED";
 export const BOOKMARK_FEED = "BOOKMARK_FEED";
 export const UNBOOKMARK_FEED = "UNBOOKMARK_FEED";
 
 export const ADD_FEED_URL = "ADD_FEED_URL";
 export const REMOVE_FEED_URL = "REMOVE_FEED_URL";
+export const FETCH_FEED = "FETCH_FEED";
+
+export const ADD_LOCAL_FEED = "ADD_LOCAL_FEED";
+export const REMOVE_LOCAL_FEED = "REMOVE_LOCAL_FEED";

@@ -5,7 +5,7 @@ import {
   Route,
   Redirect,
 } from "react-router-dom";
-import routes from "./routes";
+
 import DetailPage from "./views/DetailPage";
 import Home from "./views/Home";
 const App = () => {
